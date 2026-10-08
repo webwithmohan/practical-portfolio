@@ -4,64 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Typing / Running Text Effect ---
-    const typingTextElement = document.getElementById('typing-text');
-    const words = ["Developer and Designer", "Web Developer", "UI/UX Designer"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-
-    function typeEffect() {
-        const currentWord = words[wordIndex];
-        
-        if (isDeleting) {
-            typingTextElement.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            typingTextElement.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentWord.length) {
-            typingSpeed = 2000; // Pause at full word
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typingSpeed = 500; // Pause before typing next word
-        }
-
-        setTimeout(typeEffect, typingSpeed);
-    }
-
-    if (typingTextElement) {
-        typeEffect();
-    }
-
-    // --- 2. Side Scroll Progress Bar & Top Progress Bar ---
-    const scrollProgressBar = document.getElementById('scroll-progress');
-    const scrollPercentageElement = document.getElementById('scroll-percentage');
-
-    function updateScrollProgress() {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        
-        if (scrollHeight > 0) {
-            const scrollPercentage = Math.min(Math.round((scrollTop / scrollHeight) * 100), 100);
-            if (scrollProgressBar) {
-                scrollProgressBar.style.width = scrollPercentage + '%';
-            }
-            if (scrollPercentageElement) {
-                scrollPercentageElement.textContent = scrollPercentage + '%';
-            }
-        }
-    }
-
-    window.addEventListener('scroll', updateScrollProgress);
-    updateScrollProgress(); // Initial check
+  
 
     // --- 3. Circular Skill Progress Load Animation ---
     const skillCards = document.querySelectorAll('.skill-card');
